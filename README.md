@@ -44,11 +44,29 @@ Todo o sistema é dividido em telas, as quais funcionam como forma de organizar 
 
 ### Código Principal:
 
-<><>
+Tela inicial junto com as subtelas e os códigos dos gráficos. Vamos destrinchar cada parte do código para entender seu funcionamento. 
 
-```python
+<li>Primeiro temos a tela principal feita com a biblioteca tkinter:</li>
 
-```
+Nessa parte do código é definida a tela principal(`root`) com uma imagem ilustrativa de geometria analítica, uma frase padrão em destaque para deixar bonito e os botões de redirecionamento. Vale lembrar que é apenas um código de testes, não mostrando a organização real das janelas.
+
+A imagem é pega pela função `PhotoImage` e passada para uma variável chamada `photo`, o `file` é o caminho da imagem que você quer mostrar, caso queira mudar a imagem é só colocar o caminho para outra, porém o `tkinter` só aceita _.gif_, assim, é impossível colocar _.jpeg_ ou _.png_. Ela é transformada para o formato de `label` e passada para uma variável chamada `image`, a qual tem o tamanho ajustado por `.confg`, sendo possível alterar o tamanho à vontade, limitado só pelo tamanho da janela, depois `.pack` exibe o label da imagem.
+
+A frase padrão em destaque para deixar bonito é configurada como `label`, passando o tipo de de letra e o tamanho, além da String do texto, depois, exibe com o `.pack`. Já os botões são criados com o `Button`, onde é passado o texto do botão e a função a ser chamada ao clicar através do `command`. Tem o total de três botões. o `button` que chama a função clicar, a qual abre uma janela com a lista de opções de conteúdo; o `button2` que chama a função `graph`, a qual abre uma janela com um gráfico interativo feito com `matplotlib`
+
+<li>Função clicar</li>
+
+A janela foi definida como bota e seu tamanho como o mesmo da página central(`bota`). 
+
+Depois, é definido uma caixa de lista com o seu tamanho junto ao tipo e tamanho de letra que vão ser exibidos, essa caixa é onde será adicionando as opções de conteúdo. Além disso, é criado uma lista com as opções de conteúdo, essa lista é iterada com um `for`, adicionando cada item da lista(conteúdo) à caixa de lista com o comando `.insert`. 
+
+Para selecionar os itens da lista é utilizado a função `.bind` com `<<ListboxSelect>>` que chama a função `item_selecionado` que não está funcionando ainda, mas essa função chama a função `abrir_janela` que, também, não está funcionando ainda.
+
+<li>Função graph</li>
+
+Essa função é responsável por plotar o gráfico 3d interativo.
+
+_O exemplo desse código pode ser encontrado dentro do diretório Jaminho, no arquivo main.py_
 
 ## Usando a biblioteca `matplotlib` e `numpy`
 
@@ -81,7 +99,7 @@ Para começar a plotar os gráficos, usamos as seguintes funções:
 
 **-**`plt.show()`: exibe o gráfico resultante na tela.
 
-Vejamos um exemplo com a função:
+Vejamos um exemplo com a função $y^2 = 4ax$, sendo $a>0$:
 
 ```python
 import numpy as np
