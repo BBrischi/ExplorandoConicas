@@ -11,8 +11,8 @@ O projeto do software é fornecer um guia de estudos dinâmicos no ambiente do `
 
 ## Funcionamento
 
-Todo o sistema deve ser utilizado em um Notebook python, como padrão foi utilizado o Jupyterlab, mas é possível rodar em qualquer ecossistema com suporte a python Notebook. Para ter acesso ao sistema, é só baixar o notebook Rascunho-ExplorandoConicas no próprio github. 
-Tendo o notebbok em mãos, só é necessário seguir a ordem já estabelicida no próprio notebook, a qual já está organizada como uma trilha de aprendizado do conteúdo de cônicas, toda a explicação está em fácil notação em LaTex, podendo, caso o usuário tenha domínio, acrescentar observações próprias ou sinalizações que forem convinientes. Para a manipulação dos gráficos, precisa-se de cuidado, todos os códigos referente aos gráficos 3D ficam estáticos no Jupyter, sendo possível a análise das interpretações de intersecção, as quais são fundamentais em cônicas, além disso, ao rodar os códigos é gerado um arquivo HTML, o qual deve ser acessado para poder interagir coms gráficos 3D. 
+Todo o sistema deve ser utilizado em um Notebook python, como padrão foi utilizado o Jupyterlab, mas é possível rodar em qualquer ecossistema com suporte a python Notebook. Para ter acesso ao sistema, é só baixar o notebook <i>Rascunho-ExplorandoConicas</i> no próprio repositório. 
+Com o notebook em mãos, basta seguir a ordem já estabelicida no próprio notebook, a qual já está organizada como uma trilha de aprendizado do conteúdo de cônicas, toda a explicação está em fácil notação em LaTeX, podendo, caso o usuário tenha domínio, acrescentar observações próprias ou sinalizações que forem convinientes. Para a manipulação dos gráficos, é necessário cuidado, todos os códigos referente aos gráficos 3D ficam estáticos no Jupyter, sendo possível a análise das interpretações de intersecção, as quais são fundamentais em cônicas, além disso, ao rodar os códigos é gerado um arquivo HTML, o qual deve ser acessado caso queria interagir coms gráficos 3D. 
 
 ## Pré-requisitos
 Para nosso código, além de utilizar um programa que rode códigos em Python, é preciso ter as seguintes bibliotecas:
@@ -24,25 +24,22 @@ Para nosso código, além de utilizar um programa que rode códigos em Python, �
 
 ## Usando a biblioteca `IPython`
 
-O funcionamento da biblioteca `IPython` é bem simples, já que o texto e a fórmula em LaTeX são inseridos em string. Para utilizá-lo, fazemos o import da classe `IPythondisplay`, como `from IPython.display import display, Math`. Assim, armazenamos em uma variável a fórmula do LaTeX em string em raw string e usamos o comando `display(Math())`, em que o argumento da função `Math` é a variável com LaTeX. Vejamos um exemplo:
+O funcionamento da biblioteca `IPython` é bem simples, já que o texto e a fórmula em LaTeX são inseridos em string. Para utilizá-lo, fazemos o import da classe `IPythondisplay`, como `from IPython.display import display, Markdown`. Assim, o notebook de rascunho já possui uma função que retorna o texto em markdown e, quando conveninente, basta adicionar os códigos em LaTeX usando `$(insira o texto aqui)$`. A função que definimos é:
 
 ```python
-exemplo2 = r'''
-    \begin{gather}
-    \frac{\partial f}{\partial \vec{w}} \left(2, \frac{1}{2} \right) = 
-    \langle \nabla f(4,3), \vec{w}  \rangle = (4,3) \cdot \left(\frac{4}{5}, \frac{3}{5} \right) = 
-    \frac{16}{5} + \frac{9}{5} = \frac{25}{5} = 5
-    \end{gather}
-    '''
+def txt_ltx(texto):
+"""Recebe uma string como argumento e delvove um texto como Markdown"""
     
-display(Math(exemplo2))
+    display(Markdown(texto))
 ```
 
-Rodando esse código, obtemos:
+Além disso, como estamos trabalhando com uma string que será convertida em markdown, podemos alterar fonte, tamanho da fonte, entre outros. Um exemplo seria:
 
-$$\frac{\partial f}{\partial \vec{w}} \left(2, \frac{1}{2} \right) = \langle \nabla f(4,3), \vec{w}  \rangle = (4,3) \cdot \left(\frac{4}{5}, \frac{3}{5} \right) = \frac{16}{5} + \frac{9}{5} = \frac{25}{5} = 5$$
-
-<i>Observação: Esse código usando essa biblioteca é focada para ambientes interativos como Jupyter Notebook e IPython. No momento, estamos encontrando problemas para rodar esse código na interface da biblioteca do tkinker. Explicamos já o funcionamento dessa biblioteca pela sua simplicidade e porque será uma das opções que iremos aderir caso a ideia de fazer uma interface interativa funcione.</i>
+```python
+txt_ltx('''Se chamarmos a geratriz de reta $a$ e o eixo de rotação de reta $b$, 
+fixando a reta $a$ e girando a reta $b$ em $360^\circ$ em torno de $a$ e não alterando o ângulo entre elas, 
+obtemos uma superfície cônica circular infinita formada por dois cones separados pelo vértice $V$.''')
+```
 
 ## Usando a biblioteca `matplotlib`, `Plotly` e `numpy`
 
@@ -55,8 +52,8 @@ import plotly.graph_objects as go
 import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt 
-
 ```
+
 Para começar a plotar os gráficos 2D, usamos as seguintes funções:
 
 **-**`mpl.rcParams['lines.color']`: irá definir a cor padrão das linhas do gráfico (geralmente usa-se `k`)
