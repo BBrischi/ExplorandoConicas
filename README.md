@@ -7,13 +7,14 @@ O modelo de ensino da ILUM-Escola de Ciência é voltado para o preparo dos alun
 
 ## Resumo do Código
 
-Usando a biblioteca `tkinter`, iremos programar as telas interativas e interface gráfica para exibir a teoria, exercícios e o plot dos gráficos, tanto 3D quanto 2D. A teoria será escrita usando códigos LaTeX com a biblioteca `IPython`, tornando possível exibir cada equação com uma aparência agradável. Para os plots, usaremos `matplotlib` aliada a `numpy`. A primeira biblioteca já é uma conhecida entre os usuários de código e permite realizar inúmeros tipos de plots, tantos 2D quanto 3D, dependendo do método usado. Já a segunda biblioteca será importante para consolidar a matemática por trás do código, para definir parâmetros das equações e outros elementos.
+O projeto do software é fornecer um guia de estudos dinâmicos no ambiente do `Jupyter Lab` para cônicas, contemplando a teoria, exercícios e o plot dos gráficos, tanto 3D quanto 2D. A teoria será escrita usando códigos LaTeX com a biblioteca `IPython`, tornando possível exibir cada equação com uma aparência agradável. Para os plots, usaremos `matplotlib` e o `plotly` aliada ao `numpy`. A primeira biblioteca já é uma conhecida entre os usuários de código e permite realizar inúmeros tipos de plots, tantos 2D quanto 3D, dependendo do método usado. Já a segunda biblioteca será importante para consolidar a matemática por trás do código, para definir parâmetros das equações e outros elementos. Além disso, está sendo implementada uma interface gráfica com a biblioteca `tkinter` como uma atualização posterior, visando uma melhor navegação no sistema.
 
 ## Pré-requisitos
 Para nosso código, além de utilizar um programa que rode códigos em Python, é preciso ter as seguintes bibliotecas:
 <li>Matplotlib</li>
 <li>IPython</li>
 <li>Numpy</li>
+<li>Plotly</li>
 <li>tkinter</li>
 
 ## Usando a biblioteca `IPython`
@@ -38,44 +39,18 @@ $$\frac{\partial f}{\partial \vec{w}} \left(2, \frac{1}{2} \right) = \langle \na
 
 <i>Observação: Esse código usando essa biblioteca é focada para ambientes interativos como Jupyter Notebook e IPython. No momento, estamos encontrando problemas para rodar esse código na interface da biblioteca do tkinker. Explicamos já o funcionamento dessa biblioteca pela sua simplicidade e porque será uma das opções que iremos aderir caso a ideia de fazer uma interface interativa funcione.</i>
 
-## Usando a biblioteca `tkinker`
+## Usando a biblioteca `matplotlib`, `Plotly` e `numpy`
 
-Todo o sistema é dividido em telas, as quais funcionam como forma de organizar os conteúdos e permitir ao usuário chegar até o assunto desejado com facilidade. Abaixo vamos ver um pouco de cada código do sistema implementado até o momento:
+O papel principal dessas bibilotecas é usá-las combinadas a fim de conseguir plotar os gráficos que são tão necessários dentro do estudo de GA. Sendo o `numpy` a sustentação dos processos, servindo para as funções referentes aos gráficos, já o `matplotlib` e o `plotly` são os responsáveis pela representação dos gráficos em si, o `matplotlib` está sendo usado para representar os fráficos 2D enquanto o `plotly` para o gráficos 3D.
 
-### Código Principal:
-
-Tela inicial junto com as subtelas e os códigos dos gráficos. Vamos destrinchar cada parte do código para entender seu funcionamento. 
-
-<li>Primeiro temos a tela principal feita com a biblioteca tkinter:</li>
-
-Nessa parte do código é definida a tela principal(`root`) com uma imagem ilustrativa de geometria analítica, uma frase padrão em destaque para deixar bonito e os botões de redirecionamento. Vale lembrar que é apenas um código de testes, não mostrando a organização real das janelas.
-
-A imagem é pega pela função `PhotoImage` e passada para uma variável chamada `photo`, o `file` é o caminho da imagem que você quer mostrar, caso queira mudar a imagem é só colocar o caminho para outra, porém o `tkinter` só aceita _.gif_, assim, é impossível colocar _.jpeg_ ou _.png_. Ela é transformada para o formato de `label` e passada para uma variável chamada `image`, a qual tem o tamanho ajustado por `.confg`, sendo possível alterar o tamanho à vontade, limitado só pelo tamanho da janela, depois `.pack` exibe o label da imagem.
-
-A frase padrão em destaque para deixar bonito é configurada como `label`, passando o tipo de de letra e o tamanho, além da String do texto, depois, exibe com o `.pack`. Já os botões são criados com o `Button`, onde é passado o texto do botão e a função a ser chamada ao clicar através do `command`. Tem o total de três botões. o `button` que chama a função clicar, a qual abre uma janela com a lista de opções de conteúdo; o `button2` que chama a função `graph`, a qual abre uma janela com um gráfico interativo feito com `matplotlib`
-
-<li>Função clicar</li>
-
-A janela foi definida como bota e seu tamanho como o mesmo da página central(`bota`). 
-
-Depois, é definido uma caixa de lista com o seu tamanho junto ao tipo e tamanho de letra que vão ser exibidos, essa caixa é onde será adicionando as opções de conteúdo. Além disso, é criado uma lista com as opções de conteúdo, essa lista é iterada com um `for`, adicionando cada item da lista(conteúdo) à caixa de lista com o comando `.insert`. 
-
-Para selecionar os itens da lista é utilizado a função `.bind` com `<<ListboxSelect>>` que chama a função `item_selecionado` que não está funcionando ainda, mas essa função chama a função `abrir_janela` que, também, não está funcionando ainda.
-
-<li>Função graph</li>
-
-Essa função é responsável por plotar o gráfico 3d interativo.
-
-_O exemplo desse código pode ser encontrado dentro do diretório Jaminho, no arquivo main.py_
-
-## Usando a biblioteca `matplotlib` e `numpy`
-
-O papel principal dessas duas bibilotecas é usá-las combinadas a fim de conseguir plotar os gráficos que são tão necessários dentro do estudo de GA. Com a `matplotlib`, usamos a classe `import matplotlib.pyplot as plt`, os outros imports são:
+Usamos os seguintes imports:
 
 ```python
+import plotly.graph_objects as go
 import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt 
+
 ```
 Para começar a plotar os gráficos, usamos as seguintes funções:
 
@@ -124,3 +99,33 @@ axes()
 plt.contour(x, y, (y**2 - 4*a*x), [0], colors='blue')
 plt.show()
 ```
+
+### Código em Implementação com o tkinter:
+
+Todo o sistema será dividido em telas, as quais funcionarão como forma de organizar os conteúdos e permitir ao usuário chegar até o assunto desejado com facilidade. Abaixo vamos ver um pouco de cada código do sistema implementado até o momento:
+
+Tela inicial junto com as subtelas e os códigos dos gráficos. Vamos destrinchar cada parte do código para entender seu funcionamento. 
+
+<li>Primeiro temos a tela principal feita com a biblioteca tkinter:</li>
+
+Nessa parte do código é definida a tela principal(`root`) com uma imagem ilustrativa de geometria analítica, uma frase padrão em destaque para deixar bonito e os botões de redirecionamento. Vale lembrar que é apenas um código de testes, não mostrando a organização real das janelas.
+
+A imagem é pega pela função `PhotoImage` e passada para uma variável chamada `photo`, o `file` é o caminho da imagem que você quer mostrar, caso queira mudar a imagem é só colocar o caminho para outra, porém o `tkinter` só aceita _.gif_, assim, é impossível colocar _.jpeg_ ou _.png_. Ela é transformada para o formato de `label` e passada para uma variável chamada `image`, a qual tem o tamanho ajustado por `.confg`, sendo possível alterar o tamanho à vontade, limitado só pelo tamanho da janela, depois `.pack` exibe o label da imagem.
+
+A frase padrão em destaque para deixar bonito é configurada como `label`, passando o tipo de de letra e o tamanho, além da String do texto, depois, exibe com o `.pack`. Já os botões são criados com o `Button`, onde é passado o texto do botão e a função a ser chamada ao clicar através do `command`. Tem o total de três botões. o `button` que chama a função clicar, a qual abre uma janela com a lista de opções de conteúdo; o `button2` que chama a função `graph`, a qual abre uma janela com um gráfico interativo feito com `matplotlib`
+
+<li>Função clicar</li>
+
+A janela foi definida como bota e seu tamanho como o mesmo da página central(`bota`). 
+
+Depois, é definido uma caixa de lista com o seu tamanho junto ao tipo e tamanho de letra que vão ser exibidos, essa caixa é onde será adicionando as opções de conteúdo. Além disso, é criado uma lista com as opções de conteúdo, essa lista é iterada com um `for`, adicionando cada item da lista(conteúdo) à caixa de lista com o comando `.insert`. 
+
+Para selecionar os itens da lista é utilizado a função `.bind` com `<<ListboxSelect>>` que chama a função `item_selecionado` que não está funcionando ainda, mas essa função chama a função `abrir_janela` que, também, não está funcionando ainda.
+
+<li>Função graph</li>
+
+Essa função é responsável por plotar o gráfico 3d interativo.
+
+_O exemplo desse código pode ser encontrado dentro do diretório Jaminho, no arquivo main.py_
+
+
