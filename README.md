@@ -9,6 +9,11 @@ O modelo de ensino da ILUM-Escola de Ciência é voltado para o preparo dos alun
 
 O projeto do software é fornecer um guia de estudos dinâmicos no ambiente do `Jupyter Lab` para cônicas, contemplando a teoria, exercícios e o plot dos gráficos, tanto 3D quanto 2D. A teoria será escrita usando códigos LaTeX com a biblioteca `IPython`, tornando possível exibir cada equação com uma aparência agradável. Para os plots, usaremos `matplotlib` e o `plotly` aliada ao `numpy`. A primeira biblioteca já é uma conhecida entre os usuários de código e permite realizar inúmeros tipos de plots, tantos 2D quanto 3D, dependendo do método usado. Já a segunda biblioteca será importante para consolidar a matemática por trás do código, para definir parâmetros das equações e outros elementos. Além disso, está sendo implementada uma interface gráfica com a biblioteca `tkinter` como uma atualização posterior, visando uma melhor navegação no sistema.
 
+## Funcionamento
+
+Todo o sistema deve ser utilizado em um Notebook python, como padrão foi utilizado o Jupyterlab, mas é possível rodar em qualquer ecossistema com suporte a python Notebook. Para ter acesso ao sistema, é só baixar o notebook Rascunho-ExplorandoConicas no próprio github. 
+Tendo o notebbok em mãos, só é necessário seguir a ordem já estabelicida no próprio notebook, a qual já está organizada como uma trilha de aprendizado do conteúdo de cônicas, toda a explicação está em fácil notação em LaTex, podendo, caso o usuário tenha domínio, acrescentar observações próprias ou sinalizações que forem convinientes. Para a manipulação dos gráficos, precisa-se de cuidado, todos os códigos referente aos gráficos 3D ficam estáticos no Jupyter, sendo possível a análise das interpretações de intersecção, as quais são fundamentais em cônicas, além disso, ao rodar os códigos é gerado um arquivo HTML, o qual deve ser acessado para poder interagir coms gráficos 3D. 
+
 ## Pré-requisitos
 Para nosso código, além de utilizar um programa que rode códigos em Python, é preciso ter as seguintes bibliotecas:
 <li>Matplotlib</li>
@@ -52,7 +57,7 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt 
 
 ```
-Para começar a plotar os gráficos, usamos as seguintes funções:
+Para começar a plotar os gráficos 2D, usamos as seguintes funções:
 
 **-**`mpl.rcParams['lines.color']`: irá definir a cor padrão das linhas do gráfico (geralmente usa-se `k`)
 
@@ -74,7 +79,7 @@ Para começar a plotar os gráficos, usamos as seguintes funções:
 
 **-**`plt.show()`: exibe o gráfico resultante na tela.
 
-Vejamos um exemplo com a função $y^2 = 4ax$, sendo $a>0$:
+Vejamos um exemplo de uma ampulheta com intersecção:
 
 ```python
 import numpy as np
@@ -98,6 +103,96 @@ a = .3 # Variável definida para comportar a variável descrita na expressão.
 axes()
 plt.contour(x, y, (y**2 - 4*a*x), [0], colors='blue')
 plt.show()
+```
+Para começar a plotar os gráficos 3D, usamos as seguintes funções:
+
+**-**` go.Cone()`: configura uma função que representa um cone, sendo possível alterar os atributos para ajustar a necessidade. Sendo possível definir a posição em relação ao eixo x, y e x junto com a inclinação em relação aos eixos x(u), y(v) e z(w), além de ajustes de referência do tamanho do cone, cor e opacidade.
+
+**-**`go.Surface()`: configura uma função que representa um plano, sendo possível ajustar os eixos, cor e opacidade.
+
+**-**`go.Figure()`: configura os componentes do gráfico, sendo passado as funções que irão compor a figura final.
+
+**-**`x = np.linspace(-9, 9, 400)`: cria um array unidimensional chamado 'y' com 400 valores igualmente espaçados no intervalo de -5 a 5. Esses valores serão usados como coordenadas y para os pontos do gráfico.
+
+**-**`y = np.linspace(-5, 5, 400)`: cria um array unidimensional chamado 'y' com 400 valores igualmente espaçados no intervalo de -5 a 5. Esses valores serão usados como coordenadas y para os pontos do gráfico.
+
+**-**`x, y = np.meshgrid(x, y)`: cria uma grade bidimensional a partir dos arrays 'x' e 'y', sendo essa função advinda do `numpy`. Essa grade será usada para desenhar o contorno do gráfico.
+
+**-**`.update_layout()`: configura a figura do gráfico, sendo possível definir título e tamanho. 
+
+**-**`plt.show()`: exibe o gráfico resultante na tela.
+
+**-**`.write_html()`: escreve a figura, que foi configurada com `go.Figure` e `.update_layout`, no formato html e salva em um arquivo.
+
+Vejamos um exemplo com a função $y^2 = 4ax$, sendo $a>0$:
+
+```python
+import plotly.graph_objects as go
+import numpy as np
+
+# Parâmetros dos cones
+raio_base = 1  # Raio da base do cone
+altura = 3  # Altura do cone
+
+
+# Criação do cone inferior
+cone_inferior = go.Cone(
+    x=[0], y=[0], z=[altura / 2],
+    u=[0], v=[0], w=[altura],
+    sizemode="absolute",
+    sizeref=2 * raio_base,
+    showscale=False,
+    colorscale='Blues',
+    opacity=0.5
+)
+
+# Criação do cone superior
+cone_superior = go.Cone(
+    x=[0], y=[0], z=[4.5],
+    u=[0], v=[0], w=[-(altura)],
+    sizemode="absolute",
+    sizeref=2 * raio_base,
+    showscale=False,
+    colorscale='Blues',
+    opacity=0.5
+)
+
+def plane_equation(x, y):
+    return 1.5*altura + y-y
+
+# Criação dos pontos para o grid
+n_points = 50
+x = np.linspace(-raio_base, raio_base, n_points)
+y = np.linspace(-raio_base, raio_base, n_points)
+X, Y = np.meshgrid(x, y)
+
+# Cálculo das coordenadas do plano de corte
+Z = plane_equation(X, Y)
+
+plane = go.Surface(
+    x=X, y=Y, z=Z,
+    colorscale='Reds',
+    opacity=0.5
+)
+
+fig = go.Figure(data=[cone_inferior, cone_superior, plane])
+
+# Configuração do layout
+fig.update_layout(
+    title='Cone em Cima do Outro com Plano de Corte',
+    scene=dict(
+        xaxis_title='X',
+        yaxis_title='Y',
+        zaxis_title='Z',
+        aspectratio=dict(x=1, y=1, z=0.8),
+        camera=dict(eye=dict(x=1.2, y=1.2, z=1))
+    ),
+    autosize=False,
+    width=800,
+    height=800,
+)
+
+fig.write_html("grafico.html")
 ```
 
 ### Código em Implementação com o tkinter:
