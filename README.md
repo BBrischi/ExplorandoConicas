@@ -7,7 +7,7 @@ O modelo de ensino da ILUM-Escola de Ciência é voltado para o preparo dos alun
 
 ## Resumo do Código
 
-O projeto do software é fornecer um guia de estudos dinâmicos no ambiente do `Jupyter Lab` para cônicas, contemplando a teoria, exercícios e o plot dos gráficos, tanto 3D quanto 2D. A teoria será escrita usando códigos LaTeX com a biblioteca `IPython`, tornando possível exibir cada equação com uma aparência agradável. Para os plots, usaremos `matplotlib` e o `plotly` aliada ao `numpy`. A primeira biblioteca já é uma conhecida entre os usuários de código e permite realizar inúmeros tipos de plots, tantos 2D quanto 3D, dependendo do método usado. Já a segunda biblioteca será importante para consolidar a matemática por trás do código, para definir parâmetros das equações e outros elementos. Além disso, está sendo implementada uma interface gráfica com a biblioteca `tkinter` como uma atualização posterior, visando uma melhor navegação no sistema.
+O projeto do software é fornecer um guia de estudos dinâmicos no ambiente do `Jupyter Lab` para cônicas, contemplando a teoria, exercícios e o plot dos gráficos, tanto 3D quanto 2D. A teoria será escrita usando códigos LaTeX com a biblioteca `IPython`, tornando possível exibir cada equação com uma aparência agradável. Para os plots, usaremos `matplotlib` e o `plotly` aliada ao `numpy`. A primeira biblioteca já é uma conhecida entre os usuários de código e permite realizar inúmeros tipos de plots, tantos 2D quanto 3D, dependendo do método usado. Já a segunda biblioteca será importante para consolidar a matemática por trás do código, para definir parâmetros das equações e outros elementos. Além disso, para que o usuário possa testar seus conhecimentos, há um quiz com diverssas perguntas, no qual é possível ver a quantidade de acerto por tópico, permitindo que o usuário saiba quais assuntos precisa revisar.
 
 ## Funcionamento
 
@@ -191,7 +191,8 @@ fig.update_layout(
 
 fig.write_html("grafico.html")
 ```
-
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Futuro que nunca vai acontecer
 ### Código em Implementação com o tkinter:
 
 Todo o sistema será dividido em telas, as quais funcionarão como forma de organizar os conteúdos e permitir ao usuário chegar até o assunto desejado com facilidade. Abaixo vamos ver um pouco de cada código do sistema implementado até o momento:
