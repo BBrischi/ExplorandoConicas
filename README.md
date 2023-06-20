@@ -7,7 +7,7 @@ O modelo de ensino da ILUM-Escola de Ciência é voltado para o preparo dos alun
 
 ## Como acessar o material mais completo e interativo sobre cônicas do século XXI
 
-Para ter acesso ao sistema, o usuário deve acessar a pasta Projeto Final e abrir o arquivo Samuca.ipynb em um software que rode o formato ipynb, pode ser usado o vscode, jupyterlab ou googlecolab, nos dois últimos casos, é necessário transferir toda a pasta Projeto Final nos respectivos servidores para que não haja problema na visualização das imagens, por fim, deve-se abrir o arquico Samuca.ipynb. 
+Primeiro o usuário deve fazer o git clone do repositório e para ter acesso ao sistema, o usuário deve acessar a pasta Projeto Final e abrir o arquivo Samuca.ipynb em um software que rode o formato ipynb, pode ser usado o vscode, jupyterlab ou googlecolab, nos dois últimos casos, é necessário transferir toda a pasta Projeto Final nos respectivos servidores para que não haja problema na visualização das imagens, por fim, deve-se abrir o arquico Samuca.ipynb. 
 
 ## Funcionamento
 
