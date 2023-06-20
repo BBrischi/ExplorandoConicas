@@ -7,11 +7,14 @@ O modelo de ensino da ILUM-Escola de Ciência é voltado para o preparo dos alun
 
 ## Como acessar o material mais completo e interativo sobre cônicas do século XXI
 
-Primeiro o usuário deve fazer o git clone do repositório e para ter acesso ao sistema, o usuário deve acessar a pasta Projeto Final e abrir o arquivo Samuca.ipynb em um software que rode o formato ipynb, pode ser usado o vscode, jupyterlab ou googlecolab, nos dois últimos casos, é necessário transferir toda a pasta Projeto Final nos respectivos servidores para que não haja problema na visualização das imagens, por fim, deve-se abrir o arquico Samuca.ipynb. 
+<li>Primeiro o usuário deve fazer o git clone do repositório</li>
+<li>Para ter acesso ao sistema, o usuário deve acessar a pasta em um software que rode o formato ipynb, pode ser usando o vscode, jupyterlab ou googlecolab. </li>
+<li>No caso do googlecollab e jupyterlab, é necessário transferir toda a pasta Projeto Final nos respectivos servidores para que não haja problema na visualização das imagens </li> 
+<li>Por fim, deve-se abrir o arquivo Samuca.ipynb da pasta Projeto Final.</li>
 
 ## Funcionamento
 
-Com o notebook em mãos, basta seguir a ordem já estabelicida no próprio notebook, a qual já está organizada como uma trilha de aprendizado do conteúdo de cônicas, toda a explicação está em fácil notação em LaTeX, podendo, caso o usuário tenha domínio, acrescentar observações próprias ou sinalizações que forem convinientes. Para a manipulação dos gráficos, é necessário cuidado, todos os códigos referentes aos gráficos 3D salvam os gráficos gerados em um arquivo separado do tipo HTML, por isso, o usuário deve abrir o arquivo HTML gerado pelo código para visualizar o gráfico em questão, caso o usuário julgue necessário, é possível alterar o nome dos arquivos HTML gerados. Além disso, ao abrir os arquivos HTML aparecerá no canto superior direito um botão escrito TrustHTML, que deve ser clicado para que o arquivo seja aberto.
+Com o notebook em mãos, basta seguir a ordem já estabelicida no próprio notebook, a qual já está organizada como uma trilha de aprendizado do conteúdo de cônicas, toda a explicação está em fácil notação em LaTeX e Markdown com HTML, podendo, caso o usuário tenha domínio, acrescentar observações próprias ou sinalizações que forem convinientes. Para a manipulação dos gráficos, é necessário cuidado, todos os códigos referentes aos gráficos 3D salvam os gráficos gerados em um arquivo separado do tipo HTML. Por isso, o usuário deve abrir o arquivo HTML gerado pelo código para visualizar o gráfico em questão, caso o usuário julgue necessário, é possível alterar o nome dos arquivos HTML gerados. Além disso, ao abrir os arquivos HTML aparecerá no canto superior direito um botão escrito TrustHTML, que deve ser clicado para que o arquivo seja aberto.
 Já para o quiz, ao rodar o código, é necessário ter cuidado para finalizar o quiz antes de rodar qualquer outro código, caso não quira terminar, deve reiniciar o Kernel. O quiz é simples com perguntas referentes aos tópicos abordados no próprio notebook, e é gerado um pequeno relatório com a quantidade de acertos por tópico para que o usuário saiba quais assuntos precisam de maior revisão. 
 
 ## Resumo do Código
