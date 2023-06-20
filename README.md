@@ -198,7 +198,7 @@ fig.write_html("grafico.html")
 ```
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Futuro que nunca vai acontecer
-### Código em Implementação com o tkinter:
+### Código com o tkinter sem finalização por impossibilidades técnicas:
 
 Todo o sistema será dividido em telas, as quais funcionarão como forma de organizar os conteúdos e permitir ao usuário chegar até o assunto desejado com facilidade. Abaixo vamos ver um pouco de cada código do sistema implementado até o momento:
 
