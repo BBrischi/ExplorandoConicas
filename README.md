@@ -10,7 +10,7 @@ O modelo de ensino da ILUM-Escola de Ciência é voltado para o preparo dos alun
 <li>Primeiro o usuário deve fazer o git clone do repositório</li>
 <li>Para ter acesso ao sistema, o usuário deve acessar a pasta em um software que rode o formato ipynb, pode ser usando o vscode, jupyterlab ou googlecolab. </li>
 <li>No caso do googlecollab e jupyterlab, é necessário transferir toda a pasta Projeto Final nos respectivos servidores para que não haja problema na visualização das imagens </li> 
-<li>Por fim, deve-se abrir o arquivo Samuca.ipynb da pasta Projeto Final.</li>
+<li>Por fim, deve-se abrir o arquivo Explorando_Conicas.ofc.ipynb da pasta Projeto Final.</li>
 
 ## Funcionamento
 
